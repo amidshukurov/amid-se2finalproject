@@ -20,7 +20,7 @@ pipeline {
                 
             }
         }
-        
+        /*
         stage('Sonarqube') {
             steps {
                 dir('backend'){
@@ -29,7 +29,7 @@ pipeline {
                   }
                
             }
-        }
+        }*/
         stage('Build docker image') {
             steps {
                 sh 'docker build --file backend/Dockerfile -t ${REPOSITORY_TAG} backend/'
