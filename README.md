@@ -1,6 +1,6 @@
 1.Run jenkins inside minikube
 ~minikube start
-~$eval $(minikube driver docker) 
+~$eval $(minikube driver docker)
 
 it will create everything in minikube
 
@@ -17,6 +17,6 @@ This will create mysql service and we will be able to connect to later.
 
 We can connect to db by running following command :
 
-~kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -ppassword 
+~kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -ppassword
 
 In the Jenkins cretae multi branching pipeline. Pipeline will be created for eac Backend and Frontend app.
