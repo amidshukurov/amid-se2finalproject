@@ -1,16 +1,22 @@
-README details for terraform will be added later.
+1.Run jenkins inside minikube
+~minikube start
+~$eval $(minikube driver docker) 
 
-First of all we need to run jenkins inside minikube. This will help us to run k8s commands from jenkins.
+it will create everything in minikube
 
-docker image build -t myjenkins .
+~docker image build -t myjenkins .
 
-Name {myjenkins} is important because we will use it for k8s pod .
+Name {myjenkins} will use it for k8s pod .
+~ kubectl appl -f jenkinf.yaml (inside this yaml myjenkins image will ve used)
 
-Then we should craete myslq database inside kubernetes cluste by running :
+2. Run run inlocal create myslq database inside kubernetes cluste by running :
 
-kubectl apply -f mysql-deployment.yaml
+~kubectl apply -f mysql-deployment.yaml
 
-This will create mysql service which we will be able to connect to later.
+This will create mysql service and we will be able to connect to later.
 
-We can connect to db by runnin following command :
-kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -ppassword 
+We can connect to db by running following command :
+
+~kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -ppassword 
+
+In the Jenkins cretae multi branching pipeline. Pipeline will be created for eac Backend and Frontend app.
