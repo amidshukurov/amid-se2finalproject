@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app
+spec:
+  selector:
+    matchLabels:
+      app: backend-app
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: backend-app
+    spec:
+      containers:
+        - name: backend-app
+          image: ${REPOSITORY_TAG}
+          env:
+            - name: mysql
+              value: mysql
+
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-app-service
+
+spec:
+  # This defines which pods are going to be represented by this Service
+  # The service becomes a network endpoint for either other services
+  # or maybe external users to connect to (eg browser)
+  selector:
+    app: backend-app
+
+  ports:
+    - name: http
+      port: 8080
+
+  type: ClusterIP

@@ -1,0 +1,49 @@
+plugins {
+	id 'org.springframework.boot' version "$springBootVersion"
+	id 'io.spring.dependency-management' version "$springDependencyVersion"
+	id 'java'
+}
+
+group = 'az.phonebook'
+version = "$projectVersion"
+sourceCompatibility = "$sourceCompatibility"
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.2.6.RELEASE'
+	implementation "io.github.openfeign:feign-okhttp:11.0"
+	implementation "io.github.openfeign:feign-gson:11.0"
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${releaseTrainVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+springBoot {
+	buildInfo()
+}
+
+bootJar {
+	archiveName 'app.jar'
+}
+
