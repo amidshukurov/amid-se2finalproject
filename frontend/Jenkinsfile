@@ -1,27 +1,27 @@
 pipeline {
     agent any
-    /*
+    
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('docker-cred')
-		YOUR_DOCKERHUB_USERNAME="amidshukurov"
+		YOUR_DOCKERHUB_USERNAME="finalse"
         SERVICE_NAME = "frontend-app-service"
         REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${SERVICE_NAME}:${BUILD_ID}"
 	}
-    */
+    
     stages {
         stage('Build docker image') {
             steps {
-                sh 'docker build --file frontend/Dockerfile -t amidshukurov/frontend-app:01 frontend/'
+                sh 'docker build --file frontend/Dockerfile -t ${REPOSITORY_TAG} frontend/'
             }
         }
         stage('Login to DockerHub') {
 			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u finalse --password-Amid-21392139'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
         stage('Push docker image to registry') {
             steps {
-                sh 'docker push amidshukurov/frontend-app:01'
+                sh 'docker push ${REPOSITORY_TAG}'
             }
         }
         stage('Deploy to Cluster') {
