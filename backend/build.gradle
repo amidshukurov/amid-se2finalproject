@@ -1,6 +1,9 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 }
 
@@ -12,7 +15,7 @@ plugins {
     id 'jacoco'
 }
 
-group = 'az.phonebook'
+group = 'amidshkurov'
 version = "$projectVersion"
 sourceCompatibility = "$sourceCompatibility"
 
@@ -24,6 +27,9 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
 }
 
 dependencies {
